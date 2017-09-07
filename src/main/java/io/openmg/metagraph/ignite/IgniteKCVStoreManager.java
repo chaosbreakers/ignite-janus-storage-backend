@@ -49,10 +49,12 @@ public class IgniteKCVStoreManager implements KeyColumnValueStoreManager {
 
 
     public KeyColumnValueStore openDatabase(String name, StoreMetaData.Container container) throws BackendException {
+
         if (openStores.containsKey(name))
             return openStores.get(name);
 
-        IgniteKCVStore store = new IgniteKCVStore(name,new IgniteCacheManager(),this);
+        //one cache manager per store
+        IgniteKCVStore store = new IgniteKCVStore(name,new IgniteCacheManager(name),this);
         openStores.put(name, store);
         return store;
     }
@@ -87,7 +89,7 @@ public class IgniteKCVStoreManager implements KeyColumnValueStoreManager {
                 fb.batchMutation(true).distributed(true);
                 fb.timestamps(true).cellTTL(true);
                 fb.optimisticLocking(true);
-                fb.keyOrdered(false).orderedScan(false).unorderedScan(true);
+                fb.keyOrdered(false).orderedScan(false).unorderedScan(false);
                 fb.multiQuery(false).localKeyPartition(false);
                 features = fb.build();
             }

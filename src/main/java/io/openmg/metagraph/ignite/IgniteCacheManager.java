@@ -22,6 +22,11 @@ import static org.janusgraph.graphdb.configuration.GraphDatabaseConfiguration.ST
  */
 public class IgniteCacheManager<K,C,V> {
 
+    public IgniteCacheManager(String name){
+
+    }
+
+
     private IgniteCache cache;
 
     public EntryList getEntryList(K key){

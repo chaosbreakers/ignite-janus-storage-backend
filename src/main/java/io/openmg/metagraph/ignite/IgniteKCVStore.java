@@ -48,15 +48,17 @@ public class IgniteKCVStore implements KeyColumnValueStore {
     }
 
     public KeyIterator getKeys(KeyRangeQuery keyRangeQuery, StoreTransaction storeTransaction) throws BackendException {
-        return null;
+        //TODO: disable scan job
+        throw new UnsupportedOperationException();
     }
 
     public KeyIterator getKeys(SliceQuery sliceQuery, StoreTransaction storeTransaction) throws BackendException {
-        return null;
+        //TODO: disable scan job
+        throw new UnsupportedOperationException();
     }
 
     public String getName() {
-        return null;
+        return getClass().getName();
     }
 
     public void close() throws BackendException {
