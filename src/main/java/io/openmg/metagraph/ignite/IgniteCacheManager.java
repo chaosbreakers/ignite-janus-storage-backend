@@ -164,6 +164,9 @@ public class IgniteCacheManager<K,C,V> {
         try {
             StaticBuffer key = query.getKey();
             LinkedHashMap o = (LinkedHashMap) cache.get(key);
+            if(o ==null){
+                return EntryList.EMPTY_LIST;
+            }
             StaticBuffer sliceStart = query.getSliceStart();
             StaticBuffer sliceEnd = query.getSliceEnd();
 
