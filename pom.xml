@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.openmg.metagraph</groupId>
-    <artifactId>ignite-kcv-store-backend</artifactId>
+    <artifactId>ignite-janus-storage-backend</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
