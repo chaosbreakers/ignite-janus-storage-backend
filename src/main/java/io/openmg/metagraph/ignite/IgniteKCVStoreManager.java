@@ -2,9 +2,19 @@ package io.openmg.metagraph.ignite;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import org.janusgraph.diskstorage.*;
+
+import org.janusgraph.diskstorage.BackendException;
+import org.janusgraph.diskstorage.BaseTransactionConfig;
+import org.janusgraph.diskstorage.StaticBuffer;
+import org.janusgraph.diskstorage.StoreMetaData;
 import org.janusgraph.diskstorage.configuration.Configuration;
-import org.janusgraph.diskstorage.keycolumnvalue.*;
+import org.janusgraph.diskstorage.keycolumnvalue.KCVMutation;
+import org.janusgraph.diskstorage.keycolumnvalue.KeyColumnValueStore;
+import org.janusgraph.diskstorage.keycolumnvalue.KeyColumnValueStoreManager;
+import org.janusgraph.diskstorage.keycolumnvalue.KeyRange;
+import org.janusgraph.diskstorage.keycolumnvalue.StandardStoreFeatures;
+import org.janusgraph.diskstorage.keycolumnvalue.StoreFeatures;
+import org.janusgraph.diskstorage.keycolumnvalue.StoreTransaction;
 import org.janusgraph.diskstorage.util.StaticArrayBuffer;
 import org.janusgraph.graphdb.configuration.GraphDatabaseConfiguration;
 import org.slf4j.Logger;
@@ -12,9 +22,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.ByteBuffer;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -44,7 +54,7 @@ public class IgniteKCVStoreManager implements KeyColumnValueStoreManager {
             igniteConfig = "file://" + igniteConfig;
             log.debug("Set ignite config string \"{}\"", igniteConfig);
         }
-        this.openStores = new HashMap<String, IgniteKCVStore>(8);
+        this.openStores = new ConcurrentHashMap<>(8);
     }
 
 

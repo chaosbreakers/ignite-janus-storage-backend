@@ -36,9 +36,9 @@
         <!-- Enabling Apache Ignite Persistent Store. -->
         <property name="persistentStoreConfiguration">
             <bean class="org.apache.ignite.configuration.PersistentStoreConfiguration">
-                <property name="persistentStorePath" value="/Users/shaohuahe/igniteDB/db"/>
-                <property name="walStorePath" value="/Users/shaohuahe/igniteDB/db/wal"/>
-                <property name="walArchivePath" value="/Users/shaohuahe/igniteDB/db/wal/archive"/>
+                <property name="persistentStorePath" value="igniteDB/db"/>
+                <property name="walStorePath" value="igniteDB/db/wal"/>
+                <property name="walArchivePath" value="igniteDB/db/wal/archive"/>
             </bean>
         </property>
 
