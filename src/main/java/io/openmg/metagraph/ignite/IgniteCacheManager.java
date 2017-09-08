@@ -30,9 +30,10 @@ public class IgniteCacheManager<K,C,V> {
 
     private static volatile boolean igniteInited = false;
 
+    private static  Ignite ignite = null;
+
     private Object initLock = new Object();
     public  IgniteCacheManager(String name){
-        Ignite ignite = null;
         synchronized (initLock){
             if(!igniteInited){
                 ignite = Ignition.start("ignite-default-config.xml");
