@@ -2,7 +2,10 @@ package io.openmg.metagraph.ignite;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
+import org.apache.ignite.Ignition;
+import org.apache.ignite.configuration.IgniteConfiguration;
 import org.janusgraph.diskstorage.Entry;
 import org.janusgraph.diskstorage.EntryList;
 import org.janusgraph.diskstorage.StaticBuffer;
@@ -11,6 +14,7 @@ import org.janusgraph.diskstorage.keycolumnvalue.StoreTransaction;
 import org.janusgraph.diskstorage.util.NoLock;
 import org.janusgraph.diskstorage.util.StaticArrayEntry;
 
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -23,7 +27,8 @@ import static org.janusgraph.graphdb.configuration.GraphDatabaseConfiguration.ST
 public class IgniteCacheManager<K,C,V> {
 
     public IgniteCacheManager(String name){
-
+        Ignite ignite = Ignition.start("ignite-default-config.xml");
+        this.cache = ignite.getOrCreateCache(name);
     }
 
 
