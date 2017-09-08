@@ -176,7 +176,7 @@ public class IgniteCacheManager<K,C,V> {
             StaticBuffer sliceEnd = query.getSliceEnd();
 
             o.get(sliceStart);
-            EntryList result = EntryList.EMPTY_LIST;
+            EntryList result = EntryArrayList.of(new ArrayList<Entry>());
             Set set = o.entrySet();
             boolean started = false;
             for(Object item:set){
