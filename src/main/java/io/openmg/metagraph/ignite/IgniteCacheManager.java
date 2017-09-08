@@ -28,9 +28,17 @@ import static org.janusgraph.graphdb.configuration.GraphDatabaseConfiguration.ST
  */
 public class IgniteCacheManager<K,C,V> {
 
-    public IgniteCacheManager(String name){
-        Ignite ignite = Ignition.start("ignite-default-config.xml");
-        ignite.active(true);
+    private volatile boolean igniteInited = false;
+
+    public  IgniteCacheManager(String name){
+        Ignite ignite = null;
+        synchronized (this){
+            if(!igniteInited){
+                ignite = Ignition.start("ignite-default-config.xml");
+                ignite.active(true);
+                igniteInited = true;
+            }
+        }
         this.cache = ignite.getOrCreateCache(name);
     }
 
