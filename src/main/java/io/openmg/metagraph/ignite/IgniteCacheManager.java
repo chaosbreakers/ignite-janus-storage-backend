@@ -43,9 +43,11 @@ public class IgniteCacheManager<K,C,V> {
         if(o ==null){
             return EntryList.EMPTY_LIST;
         }
+        ArrayList temp = new ArrayList();
         for(Object e : o.values()){
-            result.add((Entry) e);
+            temp.add((Entry) e);
         }
+        result = EntryArrayList.of(temp);
         return result;
     }
 
