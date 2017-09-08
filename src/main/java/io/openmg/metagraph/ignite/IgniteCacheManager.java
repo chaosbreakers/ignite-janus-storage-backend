@@ -28,7 +28,7 @@ import static org.janusgraph.graphdb.configuration.GraphDatabaseConfiguration.ST
  */
 public class IgniteCacheManager<K,C,V> {
 
-    private volatile boolean igniteInited = false;
+    private static volatile boolean igniteInited = false;
 
     private Object initLock = new Object();
     public  IgniteCacheManager(String name){
