@@ -28,6 +28,7 @@ public class IgniteCacheManager<K,C,V> {
 
     public IgniteCacheManager(String name){
         Ignite ignite = Ignition.start("ignite-default-config.xml");
+        ignite.active(true);
         this.cache = ignite.getOrCreateCache(name);
     }
 

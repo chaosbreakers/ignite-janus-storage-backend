@@ -45,7 +45,7 @@
         <!-- Setting up caches. -->
         <property name="cacheConfiguration">
             <list>
-                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                <!--<bean class="org.apache.ignite.configuration.CacheConfiguration">
                     <property name="name" value="organization"/>
                     <property name="backups" value="1"/>
 
@@ -59,7 +59,7 @@
                             <value>org.apache.ignite.examples.model.Organization</value>
                         </list>
                     </property>
-                </bean>
+                </bean>-->
             </list>
         </property>
 
