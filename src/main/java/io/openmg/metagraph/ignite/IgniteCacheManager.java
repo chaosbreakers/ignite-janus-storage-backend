@@ -11,8 +11,10 @@ import org.janusgraph.diskstorage.EntryList;
 import org.janusgraph.diskstorage.StaticBuffer;
 import org.janusgraph.diskstorage.keycolumnvalue.KeySliceQuery;
 import org.janusgraph.diskstorage.keycolumnvalue.StoreTransaction;
+import org.janusgraph.diskstorage.util.EntryArrayList;
 import org.janusgraph.diskstorage.util.NoLock;
 import org.janusgraph.diskstorage.util.StaticArrayEntry;
+import org.janusgraph.diskstorage.util.StaticArrayEntryList;
 
 import java.net.URL;
 import java.util.*;
@@ -36,7 +38,7 @@ public class IgniteCacheManager<K,C,V> {
     private IgniteCache cache;
 
     public EntryList getEntryList(K key){
-        EntryList result = EntryList.EMPTY_LIST;
+        EntryList result = EntryArrayList.of(new ArrayList<Entry>());
         Map o = (Map)cache.get(key);
         if(o ==null){
             return EntryList.EMPTY_LIST;
