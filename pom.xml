@@ -7,6 +7,7 @@
     <groupId>io.openmg.metagraph</groupId>
     <artifactId>ignite-kcv-store-backend</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
