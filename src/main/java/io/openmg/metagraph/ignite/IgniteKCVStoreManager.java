@@ -92,6 +92,7 @@ public class IgniteKCVStoreManager implements KeyColumnValueStoreManager {
                 fb.keyOrdered(false).orderedScan(false).unorderedScan(false);
                 fb.multiQuery(false).localKeyPartition(false);
                 fb.transactional(false);
+                fb.keyConsistent(GraphDatabaseConfiguration.buildGraphConfiguration());
                 features = fb.build();
             }
 
