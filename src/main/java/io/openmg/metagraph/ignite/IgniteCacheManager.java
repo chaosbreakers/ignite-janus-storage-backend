@@ -38,6 +38,9 @@ public class IgniteCacheManager<K,C,V> {
     public EntryList getEntryList(K key){
         EntryList result = EntryList.EMPTY_LIST;
         Map o = (Map)cache.get(key);
+        if(o ==null){
+            return EntryList.EMPTY_LIST;
+        }
         for(Object e : o.values()){
             result.add((Entry) e);
         }
