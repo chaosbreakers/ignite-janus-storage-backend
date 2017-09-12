@@ -153,10 +153,11 @@ public class IgniteCacheManager<K,C,V> {
 
     private void insertNewRecord(K key, Entry[] newdata) {
         Map cvMap = Maps.newLinkedHashMap();
-
         for(Entry cv: newdata){
-            StaticBuffer column = cv.getColumn();
-            cvMap.put(column,cv);
+            if(cv!=null){
+                StaticBuffer column = cv.getColumn();
+                cvMap.put(column,cv);
+            }
         }
         keys.add(key);
         cache.put(key,cvMap);
