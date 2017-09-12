@@ -32,6 +32,8 @@ public class IgniteCacheManager<K,C,V> {
 
     private static  Ignite ignite = null;
 
+    private static ArrayList keys = new ArrayList();
+
     private Object initLock = new Object();
     public  IgniteCacheManager(String name){
         synchronized (initLock){
@@ -156,6 +158,7 @@ public class IgniteCacheManager<K,C,V> {
             StaticBuffer column = cv.getColumn();
             cvMap.put(column,cv);
         }
+        keys.add(key);
         cache.put(key,cvMap);
     }
 
@@ -174,6 +177,9 @@ public class IgniteCacheManager<K,C,V> {
         } else return NoLock.INSTANCE;
     }
 
+    public List getKeys(){
+        return keys;
+    }
 
     public EntryList getSlice(KeySliceQuery query, StoreTransaction txh){
         Lock lock = getLock(txh);
