@@ -56,7 +56,7 @@ public class IgniteKCVStore implements KeyColumnValueStore {
     }
 
     public String getName() {
-        return getClass().getName();
+        return getClass().getName()+System.currentTimeMillis();
     }
 
     public void close() throws BackendException {

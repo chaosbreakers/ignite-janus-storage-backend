@@ -111,21 +111,22 @@ public class IgniteKCVStoreManager implements KeyColumnValueStoreManager {
 
 
     public String getName() {
-        return getClass().getSimpleName();
+        return getClass().getSimpleName()+System.currentTimeMillis();
     }
 
     public List<KeyRange> getLocalKeyPartition() throws BackendException {
-        List<KeyRange> ranges = Lists.newArrayList();
-        ByteBuffer startBuf = ByteBuffer.allocate(Long.SIZE);
-        startBuf.putLong(Long.MAX_VALUE);
-        StaticBuffer start = StaticArrayBuffer.of(startBuf);
-
-        ByteBuffer endBuf = ByteBuffer.allocate(Long.SIZE);
-        endBuf.putLong(0L);
-        StaticBuffer end = StaticArrayBuffer.of(endBuf);
-
-        KeyRange range = new KeyRange(start,end);
-        ranges.add(range);
-        return ranges;
+//        List<KeyRange> ranges = Lists.newArrayList();
+//        ByteBuffer startBuf = ByteBuffer.allocate(Long.SIZE);
+//        startBuf.putLong(Long.MAX_VALUE);
+//        StaticBuffer start = StaticArrayBuffer.of(startBuf);
+//
+//        ByteBuffer endBuf = ByteBuffer.allocate(Long.SIZE);
+//        endBuf.putLong(0L);
+//        StaticBuffer end = StaticArrayBuffer.of(endBuf);
+//
+//        KeyRange range = new KeyRange(start,end);
+//        ranges.add(range);
+//        return ranges;
+        throw new UnsupportedOperationException();
     }
 }
