@@ -60,6 +60,10 @@ public class IgniteKCVStore implements KeyColumnValueStore {
     }
 
     public void close() throws BackendException {
+        this.igniteCache.clear();
+    }
 
+    public void clear() {
+        this.igniteCache.clear();
     }
 }

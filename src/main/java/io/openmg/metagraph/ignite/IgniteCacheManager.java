@@ -60,6 +60,10 @@ public class IgniteCacheManager<K,C,V> {
         return o;
     }
 
+    public void clear(){
+//        this.cache.clear();
+    }
+
     public synchronized void mutate(K key, List<Entry> additions, List<StaticBuffer> deletions, StoreTransaction txh){
         //Prepare data
         Entry[] add;

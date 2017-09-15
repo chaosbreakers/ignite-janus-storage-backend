@@ -85,26 +85,39 @@ public class IgniteKCVStoreManager implements KeyColumnValueStoreManager {
     }
 
     public void close() throws BackendException {
+        for (IgniteKCVStore store : openStores.values()) {
+            store.close();
+        }
         openStores.clear();
     }
 
     public void clearStorage() throws BackendException {
-        openStores.clear();
+        for (IgniteKCVStore store : openStores.values()) {
+            store.clear();
+        }
     }
 
     public StoreFeatures getFeatures() {
-            if (features == null) {
-
-                StandardStoreFeatures.Builder fb = new StandardStoreFeatures.Builder();
-                fb.batchMutation(true).distributed(true);
-                fb.timestamps(true).cellTTL(true);
-                fb.optimisticLocking(true);
-                fb.keyOrdered(true).orderedScan(true).unorderedScan(false);
-                fb.multiQuery(false).localKeyPartition(false);
-                fb.transactional(false);
-                fb.keyConsistent(GraphDatabaseConfiguration.buildGraphConfiguration());
-                features = fb.build();
-            }
+//            if (features == null) {
+//
+//                StandardStoreFeatures.Builder fb = new StandardStoreFeatures.Builder();
+//                fb.batchMutation(true).distributed(true);
+//                fb.timestamps(true).cellTTL(true);
+//                fb.optimisticLocking(true);
+//                fb.keyOrdered(true).orderedScan(true).unorderedScan(false);
+//                fb.multiQuery(false).localKeyPartition(false);
+//                fb.transactional(false);
+//                fb.keyConsistent(GraphDatabaseConfiguration.buildGraphConfiguration());
+//                features = fb.build();
+//            }
+        features = new StandardStoreFeatures.Builder()
+                .orderedScan(true)
+                .unorderedScan(true)
+                .keyOrdered(true)
+                .persists(false)
+                .optimisticLocking(true)
+                .keyConsistent(GraphDatabaseConfiguration.buildGraphConfiguration())
+                .build();
 
             return features;
     }
