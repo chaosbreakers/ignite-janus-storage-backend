@@ -148,12 +148,15 @@ public class IgniteCacheManager<K,C,V> {
     }
 
     public void saveNewData(K key, Data data) {
-        Object o = cache.get(key);
-        if(o == null){
-            insertNewRecord(key,data);
-        }else {
-            updateRecord(key,data);
-        }
+        keys.add(key);
+        cache.put(key,data);
+
+       // Object o = cache.get(key);
+        //if(o == null){
+        //   insertNewRecord(key,data);
+        //}else {
+        //    updateRecord(key,data);
+        //}
     }
 
     private void updateRecord(K key, Data newdata) {
